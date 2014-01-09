@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>编辑信息</title>
+</head>
+<style>
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
+table{ border-color:#FBFCE2;}
+table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"宋体";background-color: #FFF;}
+.sx{ text-align:center; margin:0px; padding:0px;}
+</style>
+<script charset="utf-8" src="editor/kindeditor.js"></script>
+<script charset="utf-8" src="editor/lang/zh_CN.js"></script>
+
+<body>
+<form action="?act=updxx&id={$id}" id="addarc" method="post">
+<table width="98%" style="border-collapse:collapse; margin-bottom:50px;" border="1" cellspacing="0" cellpadding="0">
+{$editform}
+  <tr>
+    <td colspan="2" align="center">
+    <a href="javascript:addarc.submit();"  class="button">更新</a>
+    <a href="javascript:void(0);" onclick="window.history.go(-1);" class="button">返回</a>
+    </td>
+  </tr>
+</table>
+</form>
+<script>
+$(function(){
+$("#delimg").bind("click",function(){
+	if(confirm("确认要删除?")){
+	$.get("uploadimg/index.asp",{
+									act:'delimg',
+									imgpath:$("#pic").val()
+										},function(data){
+								if(data==1){
+									alert('删除成功！');
+									}else{
+									alert('文件删除错误！');
+										}
+									$("#pic").val('');
+									$("#pic").change();
+		});
+	}
+	});
+$("#pic").bind("change",function(){
+	if($(this).val()!=""){
+		$("#delimg").show();
+		$("#picimg").show();
+		$("#picimg").attr("src",$(this).val());
+		}else{
+		$("#delimg").hide();
+		$("#picimg").hide();	
+			}
+	});
+$(".checknonull").bind("blur",function(){
+		if($(this).val()==''){
+			alert("信息不能为空!");
+			return false;
+			}
+	});
+//表单提交验证
+$("#addarc").submit(function(e) {
+	var i=0;
+	$(".checknonull").each(function(index, element) {
+        if($(this).val()==''){
+			i++;
+			}
+    });
+	if(i!=0){
+		alert('信息不能为空！');
+		return false;
+		}else{
+	    return true;
+			}
+
+});
+
+});
+function cha(){
+	$("#pic").change();
+	}
+</script>
+</body>
+</html>

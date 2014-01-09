@@ -1,0 +1,15 @@
+# Helicon ISAPI_Rewrite configuration file
+# Version 3.1.0.73
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+
+RewriteRule ^cat-(\d+)(.*?) cat.asp?catid=$1
+RewriteRule ^cat_(\d+)_(\d+)(.*?) cat.asp?catid=$1&page=$2
+RewriteRule ^view-(\d+)(.*?) view.asp?id=$1
+RewriteRule ^search(.*?) search.asp
+RewriteRule ^comments(.*?) comments.asp$1
+RewriteRule ^search(.*?) search.asp$1
+
+</IfModule>

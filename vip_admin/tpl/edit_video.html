@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>更新视频信息</title>
+</head>
+<style>
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
+table{ border-color:#FBFCE2;}
+table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"宋体";background-color: #FFF;}
+.sx{ text-align:center; margin:0px; padding:0px;}
+</style>
+<script charset="utf-8" src="editor/kindeditor-min.js"></script>
+<script charset="utf-8" src="editor/lang/zh_CN.js"></script>
+<script>
+			var editor;
+			KindEditor.ready(function(K) {
+					editor = K.create('textarea[name="arccontent"]', {
+					'allowFileManager' : true,
+					'uploadJson': 'editor/asp/upload_json.asp',
+					'fileManagerJson': 'editor/asp/file_manager_json.asp',
+//					'imageUploadJson':'../../../uploads',
+					'filterMode':false,
+					'allowFlashUpload':true,
+					'allowFileManager':true
+				});
+								//////////////////////////////////////////
+			K('#image1').click(function() {
+					editor.loadPlugin('image', function() {
+						editor.plugin.imageDialog({
+							imageUrl : K('#url1').val(),
+							clickFn : function(url, title, width, height, border, align) {
+								K('#url1').val(url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+				/////////////////////////////////////////
+			});
+		</script>
+<body>
+<form action="edit_article.asp" id="addarc" method="post">
+<table width="98%" style="border-collapse:collapse; margin-bottom:50px;" border="1" cellspacing="0" cellpadding="0">
+ <tr>
+ 	<td height="28" colspan="2" align="center" class="biaotou">更新视频信息&lt;&lt;<a href="javascript:window.history.go(-1);" class="button">返回</a></td>
+ </tr>
+ <tr width="10%">
+    <td>作者：</td>
+    <td><input name="arcauthor" type="text"   value="{$arcinfo.arcauthor}" style="width:100px">
+    </td>
+  </tr>
+  <tr width="10%">
+    <td>来源：</td>
+    <td><input name="arcsource" type="text"   value="{$arcinfo.arcsource}" style="width:200px"></td>
+  </tr>
+ <!---信息标题-->
+  <tr>
+    <td>标题：</td>
+    <td><input name="arctitle" type="text"   value="{$arcinfo.arctitle}" style="width:388px">
+
+</td>
+  </tr>
+  <!--信息分类-->
+  <tr>
+    <td width="90">视频属性：</td>
+    <td>
+    <input name="arcflag"  value="{$arcinfo.arcflag}" /><span style="color:#f00;">(使用格式(C,H))注意用大写</span>
+    <label for="c">1、首页推荐(C)</label>
+    <label for="c">2、头条(H)</label>
+    </td>
+  </tr>
+     <tr>
+    <td width="90">信息分类：</td>
+    <td>
+{$catidsel}<span class="red">(只能在同样信息类型下更改所属分类)</span></td>
+  </tr>
+  <tr>
+    <td width="90">内容模型：</td>
+    <td>
+    {$arcinfo.typename} <input type="hidden" name="type_id" value="{$arcinfo.typeid}" /></td>
+  </tr>
+  <!--图片信息展示-->
+  <tr>
+    <td>
+    图片展示：</td>
+    <td><input name="arcpic" type="text" id="url1" value="{$arcinfo.arcpic}" style="width:388px" /> <input type="button" id="image1" value="选择图片" />
+    </td>
+  </tr>
+  <!--内容-->
+  <tr width="10%">
+    <td>关键字：</td>
+    <td><input name="arckeys" type="text"   value="{$arcinfo.arckeys}" style="width:400px">
+      (关键字用','号分开)</td>
+  </tr>
+  <tr width="10%">
+    <td>视频描述：</td>
+    <td><textarea name="arcdescr" cols="70" rows="3"  style="width:400px">{$arcinfo.arcdescr}</textarea>
+      (视频描述)</td>
+  </tr>
+  <tr>
+    <td> 视频内容：</td>
+    <td><textarea name="arccontent" style="width:710px;height:400px;visibility:hidden;">{$arcinfo.arccontent}</textarea></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+    <input type="hidden" name="isupdtarticle" value="true" />
+    <input type="hidden" name="id" value="{$arcinfo.id}" />
+    <input type="submit"  value="更新视频"  style="width:70px; height:20px;" class="coolbt checkform">
+       <input type="button"  value="返回" onclick="window.history.go(-1);"  style="width:70px" class="coolbt"></td>
+  </tr>
+</table>
+</form>
+<script>
+$(function(){
+$("#delimg").bind("click",function(){
+	if(confirm("确认要删除?")){
+	$.get("uploadimg/index.asp",{
+									act:'delimg',
+									imgpath:$("#pic").val()
+										},function(data){
+								if(data==1){
+									alert('删除成功！');
+									}else{
+									alert('文件删除错误！');
+										}
+									$("#pic").val('');
+									$("#pic").change();
+		});
+	}
+	});
+$("#pic").bind("change",function(){
+	if($(this).val()!=""){
+		$("#delimg").show();
+		$("#picimg").show();
+		$("#picimg").attr("src",$(this).val());
+		}else{
+		$("#delimg").hide();
+		$("#picimg").hide();	
+			}
+	});
+$(".checknonull").bind("blur",function(){
+		if($(this).val()==''){
+			alert("信息不能为空!");
+			return false;
+			}
+	});
+$("#addarc").submit(function(e) {
+	var i=0;
+	$(".checknonull").each(function(index, element) {
+        if($(this).val()==''){
+			i++;
+			}
+    });
+	if(i!=0){
+		alert('信息不能为空！');
+		return false;
+		}else{
+	    return true;
+			}
+
+	});
+});
+function cha(){
+	$("#pic").change();
+	}
+</script>
+</body>
+</html>

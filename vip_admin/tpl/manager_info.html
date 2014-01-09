@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>更新文章信息</title>
+</head>
+<style>
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
+table{ border-color:#FBFCE2;}
+table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"宋体";background-color: #FFF;}
+.sx{ text-align:center; margin:0px; padding:0px;}
+</style>
+
+<body>
+<form action="" id="updateadmin" name="updateadmin" method="post">
+<table width="98%" border="1" align="center" style="border-collapse:collapse; margin:50px auto;">
+<tr>
+  <td colspan="2" align="center">用户信息管理<span style="color:red;"></span></td></tr>
+  <tr>
+    <td width="45%" align="right">用户名：</td>
+    <td><input name="Uname" type="text" value="{{Uname}}" readonly="readonly" /></td>
+  </tr>
+  <tr>
+    <td align="right">密码：</td>
+    <td><input name="Upwd" type="password" value="{{Upwd}}" readonly="readonly" /></td>
+  </tr>
+  <tr>
+    <td align="right">新密码：</td>
+    <td><input type="password" name="newpwd" value="" /></td>
+  </tr>
+  <tr>
+    <td align="right">确认密码：</td>
+    <td><input type="password" name="secondnewpwd" value="" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+    <input type="hidden" name="id" value="{{id}}" />
+    <input type="hidden" name="act" value="updateadmin" />
+    <a href="javascript:void(0);" onclick="tjyanzheng()" class="button">确定</a> <a href="javascript:window.history.go(-1);" class="button">返回</a></td>
+    </tr>
+</table>
+</form>
+<script type="text/javascript">
+function tjyanzheng(){
+	var newpwd=$("input[name='newpwd']").val();
+	var secondnewpwd=$("input[name='secondnewpwd']").val();
+	if(newpwd!=secondnewpwd || newpwd=='' || secondnewpwd==''){
+		alert('两次输出密码不一致!');
+		return false;
+		}
+	$("#updateadmin").submit();
+	}
+</script>
+</body>
+</html>

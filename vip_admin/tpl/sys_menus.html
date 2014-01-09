@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk2312" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
+<title>系统菜单设置</title>
+</head>
+<style>
+a{ color:#000; text-decoration:none;}
+*{ margin:0px; padding:0px; font-size:12px;}
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px; line-height:28px;}
+.np{ border:none; padding:2px; line-height:20px; height:20px; margin-right:2px;}
+dl{ width:30%; float:left; margin-left:10px;}
+dt,dd{ padding:0px 20px;display:block; height:30px; line-height:30px;}
+dd{ padding-left:40px; border-bottom:dashed 1px #ccc;}
+input{ text-align:center; padding:2px;}
+.menutable{}
+.menutable input{ border:solid 1px #ccc;}
+td{ height:23px; padding:2px; line-height:23px;}
+
+.lanmu{ margin:0 auto; }
+.lanmu,.lanmu dt,.lanmu dd{display:block;  width:98%; margin:0px; padding:0px;}
+.lanmu dt,.lanmu dd{ height:30px; line-height:30px;}
+.lanmu dt{ background:url(images/tbg.gif) repeat-x;padding:0px 40px;}
+.lanmu dd{padding:0px 70px;}
+.lanmu dt .left{ width:330px; float:left;}
+.lanmu dt .right{ float:left;}
+
+.lanmu dd .left{ width:300px; float:left;}
+.lanmu dd .right{ float:left;}
+.lanmu dt .jiajian{ display:block; float:left; margin:10px; cursor:pointer;}
+</style>
+<body>
+<table class="menutable" width="98%"  style="border-collapse:collapse;border-color:gray;"border="0"  cellspacing="0" cellpadding="0"> 
+  <tr class="biaotou">
+    <td align="center" colspan="2">系统设置/菜单管理<span style="color:red;">(此处设置非程序员请勿操作)<a href="javascript:window.history.go(-1);" class="button">返回</a></span></td>
+  </tr>
+  <tr class="biaotou">
+    <td align="left" colspan="2">
+    <form name="addlanmuform" id="addlanmuform" action="" method="post" onsubmit="" > 
+        <input type="hidden" name="act" value="add" /> 
+      后台栏目：<input name="lanmu"   type="text"   value="" size="10" />
+        &nbsp;
+            <a href="javascript:void(0);"  id="addlanmu"   class="button submitbtn">添加</a>
+        </form></td>
+  </tr>
+<tr align="center" class="biaotou" >
+    <td align="left" colspan="2">
+     <form name="addchildlanmuform" id="addchildlanmuform" action="" method="post" >  
+     <input type="hidden"  name="act" value="add" />
+    后台栏目：
+{{sysmenus}}
+    子菜单：
+      <input   type="text"  name="childlanmu"  value="" size="10" />
+        URL
+        ：
+        <input  type="text" name="childlanmuurl"  value="" size="20" />
+&nbsp;
+<a href="javascript:void(0);"  id="addlanmu"   class="button submitbtn">添加</a>
+ &nbsp;</form></td>
+  </tr>
+
+<tr class="biaotou">
+    <td align="center" colspan="2">系统菜单更新/删除</td>
+  </tr>
+ </table>
+<dl class="lanmu">
+<dt><a href="javascript:zall();" class="button zhankai">全部展开</a>
+<a href="javascript:hall();" class="button hebing">全部合并</a></dt>
+</dl>
+  <!-- BEGIN m1_block -->
+ <dl class="lanmu">
+	<dt><div class="left"><img class="jiajian" src="images/jian.gif" width="9" height="9" />栏目：{{menu1_name}}<span class="red">（ID:{{menu1_id}}）</span></div>
+    <div class="right"> 
+    <form action="" method="post">
+    <input name="sysmenu_name"   type="text"   value="{{menu1_name}}" size="15" /> 
+	<input type="hidden" name="act" value="update" />
+    <a href="javascript:void(0);" id="addchildlanmu"   class="button submitbtn">更新</a>
+    <input type="hidden" name="id" value="{{menu1_id}}" />
+        <a href="javascript:void(0);" id="addchildlanmu"   class="button delbtn">删除</a>
+     排序:<input type="text" class="sort" value="{{sort1}}" size="3" maxlength="2"   />
+     权限:<input type="text" class="sort" name="qx_id" value="{{qx_id1}}" size="3" maxlength="2"   />
+    </form></div>
+    </dt>
+<!-- BEGIN m2_block -->
+    <dd>
+        <div class="left">
+    	菜单：{{menu2_name}}<span class="red">（ID:{{menu2_id}}）</span></div>
+        <div class="right">
+        <form action="" method="post">
+       <input name="sysmenu_name"   type="text"   value="{{menu2_name}}" size="15" /> 
+    URL
+    ：
+    <input name="sysmenu_link"   type="text"   value="{{menu2_link}}" size="20" />
+    <input type="hidden" name="act" value="update" />
+    <a href="javascript:void(0);" id="addchildlanmu"   class="button submitbtn">更新</a>
+    <input type="hidden" name="id" value="{{menu2_id}}" />
+        <a href="javascript:void(0);" id="addchildlanmu"   class="button delbtn">删除</a>
+    排序:<input type="text" class="sort" value="{{sort2}}" size="3" maxlength="2"  />
+    权限:<input type="text" name="qx_id" class="sort" value="{{qx_id2}}" size="3" maxlength="2"   />
+    </form>
+        </div>
+    </dd>
+        <!-- END m2_block -->
+</dl>
+
+  <!-- END m1_block -->
+<script>
+function zall(){
+	$('.jiajian').attr('src','images/jian.gif');
+	$('.lanmu dd').show();
+	}
+function hall(){
+	$('.jiajian').attr('src','images/jia.gif');
+	$('.lanmu dd').hide();
+	}
+	hall();
+$(function(){
+		$(".lanmu dd").bind("mouseover",function(){
+			$(this).css('background','#FBFCE2');
+		});
+		$(".lanmu dd").bind("mouseout",function(){
+			$(this).css('background','#ffffff');
+		});
+$('.lanmu .jiajian').bind('click',function(){
+		var a=$(this).attr('src')
+		if(a=='images/jia.gif'){
+			$(this).attr('src','images/jian.gif');
+			}else{
+			$(this).attr('src','images/jia.gif');	
+				}
+		$(this).parent().parent().parent().children('dd').toggle();
+		});
+	$("#addchildlanmu").bind("click",function(){
+		if($("input[name='childlanmu']").val()==''){
+			alert('名称不能为空');
+			return false;
+			}
+		if($("input[name='childlanmuurl']").val()==''){
+			alert('URL不能为空');
+
+			return false;
+			}		
+		document.getElementById('addchildlanmuform').submit();
+		});
+	$("#addlanmu").bind("click",function(){
+		if($("input[name='lanmu']").val()==''){
+			alert('不能为空');
+			return false;
+			}
+		document.getElementById('addlanmuform').submit();
+
+		});
+
+//删除后台菜单
+	$(".delbtn").bind("click",function(){
+		if(!confirm("确认删除?"))return;
+		var obj=$(this);
+		var valu=obj.prev().val();
+		$.get("./",{
+				'act':"ajax",
+				'action':'delmenu',
+				'id':valu
+				},function(data){
+					if(data=='1'){
+							alert("删除成功！");
+							obj.parent().parent().parent().remove();	
+						}else{
+							alert(data);
+							}
+			});
+		})
+//更新排序
+	$(".sort").bind("blur",function(){
+		var obj=$(this);
+		var valu=obj.prev().prev().val();
+		$.get("./",{
+				'act':"ajax",
+				'action':'updtsort',
+				'id':valu,
+				'sort':obj.val()
+				},function(data){
+					if(data==1){
+						alert('排序更新成功！');
+							
+					}else{
+						alert(data);		
+							}
+			});
+		
+		});
+$("tr").bind("mouseover",function(){
+	$(this).attr('bgcolor','#fcfdee');
+	});
+$("tr").bind("mouseout",function(){
+	$(this).attr('bgcolor','#ffffff');
+	});
+});
+
+
+</script>
+</body>
+</html>

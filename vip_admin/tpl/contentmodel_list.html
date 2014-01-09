@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
+<title>编辑信息</title>
+<style>
+a{ color:#000; text-decoration:none;}
+*{ margin:0px; padding:0px; font-size:12px;}
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px; line-height:28px;}
+td{ height:22px; padding:0px;}
+.np{ border:none;}
+table input{ text-align:center; display:inline-block; width:70px; height:22px; border:none; padding:2px;}
+</style>
+</head>
+<body>
+<!--搜索信息-->
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
+<tr class="biaotou" bgcolor="#E7E7E7">
+<td height="28" colspan="11" align="center" background="images/tbg.gif" style="padding-left:10px;">
+	<span>内容模型列表</span> &gt;&gt;&nbsp;<a href="add_content_model.asp" class="button">添加新模型</a> &gt;&gt;&nbsp;<a href="javascript:window.history.go(-1);" class="button">返回</a>
+</td>
+</tr>
+<tr align="center" bgcolor="#FBFCE2" height="25">
+<td width="6%">ID</td>
+<td width="10%">模型名称</td>
+<td width="8%">简称</td>
+<td width="6%">数据表</td>
+<td width="10%">添加模板</td>
+<td width="10%">编辑模板</td>
+<td width="10%">封面模板</td>
+<td width="10%">列表模板</td>
+<td width="10%">详情模板</td>
+<td width="10%">编辑字段</td>
+<td width="10%">操作</td>
+
+</tr>
+</table>
+<!--{arclist sql="select * from kl_content_types" iteration="jishu"}-->
+<form action="" method="post">
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
+
+
+<tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25" >
+<td width="6%">{$type_id}</td>
+<td align="left" width="10%">
+	<input  name="type_name" type="text" value="{$type_name}" />
+</td>
+<td align="left" width="8%">
+	<input  name="type_sxname" type="text" value="{$type_sxname}" />
+</td>
+<td width="6%"><input  name="data_table" type="hidden" value="{$data_table}" />{$data_table}</td>
+<td width="10%"><input  name="tpl_addform" type="text" value="{$tpl_addform}" /></td>
+<td width="10%"><input  name="tpl_editform" type="text" value="{$tpl_editform}" /></td>
+<td width="10%"><input  name="tpl_index" type="text" value="{$tpl_index}" /></td>
+<td width="10%"><input  name="tpl_list" type="text" value="{$tpl_list}" /></td>
+<td width="10%"><input  name="tpl_article" type="text" value="{$tpl_article}" /></td>
+<td width="10%"><a href="edit_field.asp?type_id={$type_id}" class="button">编辑字段</a> </td>
+<td width="10%">
+    <input type="hidden" name="type_id" value="{$type_id}" />
+    <input type="hidden" name="act" value="updmodel" />
+     <a href="javascript:void(0);" class="button submitbtn">更新</a> 
+     <eq {$jishu} neq 1>
+    <a href="?act=delmodel&type_id={$type_id}" class="button">删除</a> 
+    </eq>
+    </td>
+
+</tr>
+
+
+</table>
+</form>
+<!--{/arclist}-->
+
+
+<script type="text/javascript">
+//删除友情链接
+$(function(){
+	$(".delfriendlink").bind("click",function(){
+		var obj=$(this);
+		var valu=obj.prev().val();
+		$.get("./",{
+				'act':'ajax',
+				'action':'delfriendlink',
+				'friend_id':valu
+			},function(data){
+				if(data==1){
+						alert('删除成功！');
+						obj.parent().parent().parent().remove();
+					}else{
+						alert(data);
+						
+						}
+				});
+		});
+	})
+</script>
+
+
+</body>
+</html>

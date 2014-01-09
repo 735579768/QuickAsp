@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/menus.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
+<title>菜单</title>
+</head>
+
+<body style="overflow:scroll; overflow-x:hidden;">
+<!-- BEGIN m1_block -->
+<dl class="menu">
+	<dt>{{menu1_name}}</dt>
+    <dd>
+        <ul>
+        <!-- BEGIN m2_block -->
+            <li><a href="{{menu2_link}}"  target="main">{{menu2_name}}</a></li>
+        <!-- END m2_block -->
+        </ul>
+    </dd>
+</dl>
+<!-- END m1_block -->
+<script>
+$(document).ready(function(e) {
+    $(".menu dt").bind("click",function(){
+		$(this).next().slideToggle('fast');
+		});
+});
+</script>
+</body>
+</html>

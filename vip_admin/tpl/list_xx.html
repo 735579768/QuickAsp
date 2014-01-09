@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
+<script src="js/list.js" type="text/javascript"></script>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>信息信息</title>
+<style>
+a{ color:#000; text-decoration:none;}
+*{ margin:0px; padding:0px; font-size:12px;}
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px; line-height:28px;}
+td{ height:22px; padding:2px;}
+.np{ border:none;}
+.catimg{ position:relative; display:inline-block;}
+.catimg span{ background:#fff; border:solid 1px #ccc; padding:5px;}
+.catimg .catdaimg{ display:none; position:absolute; left:12px; top:10px; z-index:999;}
+.catimg{ float:left; display:inline-block; width:12px; height:12px; margin-left:5px;}
+u{ float:left; display:inline-block;}
+input[type="text"], input[type="password"] {
+border-width: 1px;
+border-style: solid;
+border-color: #707070 #CECECE #CECECE #707070;
+padding: 2px 4px;
+height: 18px;
+line-height: 18px;
+vertical-align: middle;
+}
+input[type="button"],input[type="submit"], input[type="reset"] {
+border: none;
+border-right: 1px solid #ACACAC;
+border-bottom: 1px solid #ACACAC;
+background-color: #F1F8B4;
+padding: 2px;
+padding-right: 5px;
+padding-left: 5px;
+background: url(../images/allbtbg2.gif) #EFF7D0;
+cursor: pointer;
+}
+select{ padding:2px;}
+#type_id{ width:100px;}
+.pagenav,.pagenav a,.pagenav font{ font-size:12px; color:#666;text-align: center;margin:10px 0px;}
+.pagenav a:hover,.pagenav a:hover font{ color:#000; background:#ebebeb;}
+.pagenav a,.pagenav font{ display:inline-block; height:20px; height:20px; padding:0px 6px; line-height:20px;border: 1px solid #E7ECF0;}
+.pagenav a font{ margin:0px; padding:0px; border:none;}
+td{ text-align:center;}
+</style>
+</head>
+<body>
+<!--搜索信息-->
+
+<table width="98%" border="0" cellpadding="2" cellspacing="1"  align="center">
+<TR class="biaotou"><TD>
+<form  name="sear1"  id="sear" style="float:left;" action="list_xx.asp" method="post">
+分类：{$selcatid}&nbsp;
+首页推荐：<select name="hometj" id="hometj">
+<option value="2">全部</option>
+<option value="1" {$hometj1} style="color:red;">已推荐</option>
+<option value="0" {$hometj0}>未推荐</option>
+</select>
+{$searchform}
+
+&nbsp;<a href="javascript:void(0);" onclick="sear1.submit();" class="button">搜索</a>
+<a href="javascript:window.history.go(-1);" class="button">返回</a>
+<a href="javascript:void(0);" id="addxx" class="button">添加信息</a>
+</TD></TR>
+</table>
+<table width="98%" border="1" cellpadding="2" style="border-collapse:collapse;" cellspacing="1" align="center">
+{$titledata}
+{$listdata}
+</table>
+<div>
+  &nbsp;
+  <a href="javascript:selAll()" class="button">全选</a>
+  <a href="javascript:noSelAll()" class="button">取消全选</a>
+  <a href="javascript:void(0)"  class="button batchdel">&nbsp;移到回收站&nbsp;</a></td>
+</div>
+<input type="hidden" name="batchid" id="batchidstr" value="" />
+</form>
+<div class="pagenav">
+{$pagenav}
+</div>
+<script type="text/javascript">
+//删除文章
+$(function(){
+	$('#addxx').bind('click',function(){
+		var catid=$('#cat_id').val();
+		window.location='add_xx.asp?type_id={$type_id}&cat_id='+catid;
+		});
+	$('.tj').bind('click',function(){
+		var va=$(this).attr('data');
+		var id=$(this).attr('dataid');
+		$('#sear').attr('action','list_xx.asp?tj='+va+'&temid='+id);
+		$('#sear').submit();
+		});
+	$('#cat_id').bind('change',function(){
+		$('#sear').submit();
+		});
+	$('#hometj').bind('change',function(){
+		$('#sear').submit();
+		});
+	$('.pagenav a').bind('click',function(){
+		var url=$(this).attr('href');
+		$('#sear').attr('action',url);
+		$('#sear').submit();
+		return false;
+		});
+	$('.del').bind('click',function(){
+		if(confirm('确定要移到加收站吗?')){
+		var id=$(this).attr('dataid');
+		$('#sear').attr('action','list_xx.asp?act=del&temid='+id);
+		$('#sear').submit();
+		}
+		});
+	$('.batchdel').bind('click',function(){
+		if(confirm('确定要批量移到回收站吗?')){
+		$('#sear').attr('action','list_xx.asp?act=batchdel');
+		$('#sear').submit();
+		}
+		});
+		//选择文章id
+		$(".checkid").bind("click",function(){
+				setBatchIdStr();
+		});
+	
+	$(".haveimg").bind("mouseover",function(){
+			$(this).next().show();
+			$(this).next().css('display','table-cell');
+			});
+	$(".haveimg").bind("mouseout",function(){
+		$(this).next().hide();
+		});
+		$(".catdaimg img").bind("mouseover",function(){
+			$(this).parent().show();
+			
+			});
+		$(".catdaimg").bind("mouseout",function(){
+			$(this).hide();
+			});
+	$("#cat_id option[value=0]").remove();
+})
+
+</script>
+
+
+</body>
+</html>

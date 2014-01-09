@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
+<script src="js/list.js" type="text/javascript"></script>
+<title>编辑信息</title>
+<style>
+a{ color:#000; text-decoration:none;}
+*{ margin:0px; padding:0px; font-size:12px;}
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px; line-height:28px;}
+td{ height:22px; padding:2px;}
+.np{ border:none;}
+table input{ text-align:center; border:none; height:22px; padding:2px;}
+.pagenav,.pagenav a,.pagenav font{ font-size:12px; color:#666;text-align: center;}
+.pagenav a:hover,.pagenav a:hover font{ color:#000; background:#ebebeb;}
+.pagenav a,.pagenav font{ display:inline-block; height:20px; height:20px; padding:0px 6px; line-height:20px;border: 1px solid #E7ECF0;}
+.pagenav a font{ margin:0px; padding:0px; border:none;}
+</style>
+</head>
+<body>
+<!--搜索信息-->
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
+<tr class="biaotou" bgcolor="#E7E7E7">
+<td height="28" colspan="9" align="center" background="images/tbg.gif" style="padding-left:10px;">
+	<span>系统日志列表</span> &gt;&gt;&nbsp;<a href="javascript:window.history.go(-1);" class="button">返回</a>
+    <a href="?act=delall" class="button">清空日志</a>
+</td>
+</tr>
+<tr align="center" bgcolor="#FBFCE2" height="25">
+<td width="5%">ID</td>
+<td width="4%">用户名</td>
+<td width="20%">角色</td>
+<td width="13%">登陆IP</td>
+<td width="17%">登陆时间</td>
+<td width="17%">操作</td>
+</tr>
+<!-- BEGIN adminlist -->
+<!--{arclist sql="{$sql}" pagesize="20" pagenav="pagenav"}-->
+<tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25" >
+<td>{$id}</td>
+<td align="left">{$uname}
+	
+</td>
+<td>{$qx_name}</td>
+<td>{$loginip}</td>
+<td>{$logintime}</td>
+<td>
+    <a href="?id={$id}" class="button">删除</a>
+    </td>
+</tr>
+<!--{/arclist}-->
+<!-- END adminlist -->
+<tr align="center" bgcolor="#FFFFFF"><td colspan="6"><div class="pagenav">{$pagenav}</div></td></tr>
+</table>
+
+
+<script type="text/javascript">
+//删除友情链接
+$(function(){
+	$(".delfriendlink").bind("click",function(){
+		var obj=$(this);
+		var valu=obj.prev().val();
+		$.get("./",{
+				'act':'ajax',
+				'action':'delfriendlink',
+				'friend_id':valu
+			},function(data){
+				if(data==1){
+						alert('删除成功！');
+						obj.parent().parent().parent().remove();
+					}else{
+						alert(data);
+						
+						}
+				});
+		});
+	})
+</script>
+
+
+</body>
+</html>

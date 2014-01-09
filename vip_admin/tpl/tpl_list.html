@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
+<script src="js/list.js" type="text/javascript"></script>
+<title>���Թ���</title>
+<style>
+a{ color:#000; text-decoration:none;}
+*{ margin:0px; padding:0px; font-size:12px;}
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px; line-height:28px;}
+td{ height:22px; padding:2px;}
+.np{ border:none;}
+
+.button {
+border: none;
+border-right: 1px solid #ACACAC;
+border-bottom: 1px solid #ACACAC;
+padding: 2px;
+padding-right: 5px;
+padding-left: 5px;
+background: #CCC url(images/allbtbg2.gif);
+cursor: pointer;
+}
+</style>
+</head>
+<body>
+<form name="commentsform" id="commentsform" action="">
+<!--������Ϣ-->
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
+<tr class="biaotou" bgcolor="#E7E7E7">
+<td height="28" colspan="11" align="center" background="images/tbg.gif" style="padding-left:10px;">
+	<span>ģ�������б�</span> &nbsp;&gt;&gt;<a href="javascript:window.history.go(-1);" class="button">����</a>
+</td>
+</tr>
+<tr align="center" bgcolor="#FBFCE2" height="25">
+<td width="5%">ģ��</td>
+<td width="5%">����</td>
+</tr>
+<!-- BEGIN tpllist -->
+<tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25" >
+<td>
+{{name}}
+</td>
+<td>{{descr}}</td>
+</tr>
+<!-- END tpllist -->
+
+
+</table>
+<input type="hidden" name="batchid" id="batchidstr" value="" />
+</form>
+<script type="text/javascript">
+$(function(){
+		//ѡ������id
+		$(".checkid").bind("click",function(){
+				setBatchIdStr();
+		});
+	});
+</script>
+</body>
+</html>

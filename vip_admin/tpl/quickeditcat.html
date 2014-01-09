@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
+<title>主框架</title>
+<style>
+html,body{ width:100%;}
+* {
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+table{ border:none;}
+</style>
+</head>
+
+<body style="background:#FFFFFF;">
+<form action="?act=upd&cat_id={$catobj.cat_id}" method="post"  name="form1">
+  <table width="98%" height="98%" border="1" style="border-collapse:collapse; margin:10px auto;" cellspacing="1" cellpadding="3">
+          <tr align="center" class="biaotou">
+            <td colspan="2">更改分类属性</td></tr>
+  <tr>
+    <td align="left" width="20%" > 分类名字：</td>
+    <td align="left"><input name="cat_name" type="text" value="{$catobj.cat_name}" /></td>
+  </tr>
+  <tr>
+    <td align="left" width="20%" > 分类别名：</td>
+    <td align="left"><input name="cat_alias" type="text" value="{$catobj.cat_alias}" /></td>
+  </tr>
+  <tr>
+    <td align="left" width="20%" > 分类链接：</td>
+    <td align="left"><input name="cat_url" type="text" value="{$catobj.cat_url}" /></td>
+  </tr>
+    <tr>
+    <td align="left" width="100"> 父分类：</td>
+    <td align="left">{$catobj.parentidsel}(<span class="red">不要随便更改</span>)</td>
+  </tr>
+    <tr>
+  	<td >自定义模板：</td>
+    <td><htmlradio name="cat_single" options="selarr" selected="seled" /></td>
+  </tr>
+    <tr>
+  	<td >封面模板：</td>
+    <td><input name="cat_index" type="text" value="{$catobj.cat_index}" style="width:200px; height:20px;" /></td>
+  </tr>
+<!--  <tr>
+  	<td >列表模板：</td>
+    <td><input name="cat_list" type="text" value="{$catobj.cat_list}" style="width:200px; height:20px;" /></td>
+  </tr>-->
+  <tr>
+  	<td >文章模板：</td>
+    <td><input name="cat_article" type="text" value="{$catobj.cat_article}" style="width:200px; height:20px;" /></td>
+  </tr>
+          
+    <tr>
+    <td  align="left">显示/隐藏：</td>
+    <td align="left"> <input name="cat_show" type="text"  value="{$catobj.cat_show}" size="5" maxlength="1" />&nbsp;显示(1)隐藏(0)</td>
+  </tr> 
+    <tr>
+    <td align="left"> 排序：</td>
+    <td align="left"><input name="sort"  type="text" value="{$catobj.sort}" /></td>
+  </tr>
+  <tr>
+    <td width="100px" align="left">分类属性：</td>
+    <td align="left"><input name="catflag" type="text"  value="{$catobj.catflag}" />(0是空分类,1是封面内容,2是列表内容)</td>
+  </tr>
+            <tr align="center">
+              <td colspan="2">
+                <a class="button" style="width:100px;" href="javascript:form1.submit();">确定</a>
+                </td>
+            </tr>
+          </table>
+</form>
+{$catobj.jsstr}
+</body>
+</html>

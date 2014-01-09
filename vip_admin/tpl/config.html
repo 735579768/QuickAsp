@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="editor/themes/default/default.css" />
+<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script charset="utf-8" src="editor/kindeditor.js"></script>
+<script charset="utf-8" src="editor/lang/zh_CN.js"></script>
+<title>配置</title>
+<style>
+*{ margin:0px; padding:0px; font-size:12px;}
+a{ text-decoration:none; color:#000;}
+.kl-tab{}
+.kl-tab-nav{ display:block; height:30px; float:left;line-height: 30px;width: 100px;text-align: center;border-right: solid 1px #ccc; cursor:pointer;}
+.kl-tab .kl-tab-nav-block,.kl-tab .kl-tab-div-block{ display:block; width:100%; float:left; padding:10px 20px;}
+
+.kl-tab .kl-tab-div{ width:100%;}
+</style>
+</head>
+
+<body style="background:#FFFFFF;">
+<script>
+KindEditor.ready(function(K) {
+				var editor = K.editor({
+					'allowFileManager' : true,
+					'uploadJson': 'editor/asp/upload_json.asp',
+					'fileManagerJson': 'editor/asp/file_manager_json.asp',
+//					'imageUploadJson':'../../../uploads',
+					'filterMode':false,
+					'allowFlashUpload':true,
+					'allowFileManager':true
+				});
+				K('#image1').click(function() {
+					editor.loadPlugin('image', function() {
+						editor.plugin.imageDialog({
+							imageUrl : K('#url1').val(),
+							clickFn : function(url, title, width, height, border, align) {
+								var imgurl=K('#url1').val();
+								if(imgurl==""){
+									K('#url1').val(url);
+								}else{
+									K('#url1').val(imgurl+"||"+url);
+								}
+								
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+			});
+</script>
+<form action="?upcfg=true" method="post" name="form1">
+<div class="kl-tab">
+<ul class="kl-tab-nav-block">
+	<li class="kl-tab-nav">基本配置</li>
+    <li class="kl-tab-nav">高级配置</li>
+    <li class="kl-tab-nav">站点信息</li>
+</ul>
+    <div class="kl-tab-div-block">
+        <div class="kl-tab-div">
+
+          <table width="100%" style="" id="td1" border="0" cellspacing="1" cellpadding="1" bgcolor="#cfcfcf">
+      <tbody><tr align="right" bgcolor="#FBFCE2" height="25">
+       <td width="300" align="center">参数说明</td>
+       <td align="center">参数值</td>
+       <td width="220" align="center">变量名</td>
+      </tr>
+            
+            
+            <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">主页链接名： </td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_indexname"  value="{$cfgobj.cfg_indexname}" style="width:80%"></td>
+       <td align="left">cfg_indexname</td>
+      </tr>
+            <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">全站后缀标题： </td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_webname"  value="{$cfgobj.cfg_webname}" style="width:80%"></td>
+       <td align="left">cfg_webname</td>
+      </tr>
+                  <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">网站首页标题： </td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_home"  value="{$cfgobj.cfg_home}" style="width:80%"></td>
+       <td align="left">cfg_home</td>
+      </tr>
+
+            <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">站点默认关键字： </td>
+       <td align="left" style="padding:3px;"><textarea name="cfg_keywords" cols="70" rows="3"  style="width:80%">{$cfgobj.cfg_keywords}</textarea></td>
+       <td align="left">cfg_keywords</td>
+      </tr>
+            <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">站点描述： </td>
+       <td align="left" style="padding:3px;"><textarea name="cfg_description" cols="70" rows="5" class="textarea_info" id="edit___cfg_description" style=" width:80%;height:50px" row="4">{$cfgobj.cfg_description}</textarea></td>
+       <td align="left">cfg_description</td>
+      </tr>
+            <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">网站备案号： </td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_beian"  value="{$cfgobj.cfg_beian}" style="width:80%"></td>
+       <td align="left">cfg_beian</td>
+      </tr>
+                  <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">网站版权信息： </td>
+              <td align="left" style="padding:3px;"><input type="text" name="cfg_powerby"  value="{$cfgobj.cfg_powerby}" style="width:80%"></td>
+              <td align="left">cfg_powerby</td>
+            </tr>
+           </tbody></table>
+           
+
+</div>
+        <div class="kl-tab-div">
+        <table width="100%" style="" id="td1" border="0" cellspacing="1" cellpadding="1" bgcolor="#cfcfcf">
+      <tbody><tr align="right" bgcolor="#FBFCE2" height="25">
+       <td width="300" align="center">参数说明</td>
+       <td align="center">参数值</td>
+       <td width="220" align="center">变量名</td>
+      </tr>
+            <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">文档HTML默认保存路径： </td>
+              <td align="left" style="padding:3px;"><input type="text" name="cfg_arcdir"  value="{$cfgobj.cfg_arcdir}" style="width:80%"></td>
+              <td align="left">cfg_arcdir</td>
+            </tr>
+            <tr align="right" height="25"  bgcolor="#ffffff">
+       <td width="300">图片/上传文件默认路径： </td>
+       <td align="left" bgcolor="#ffffff" style="padding:3px;"><input type="text" name="cfg_medias_dir"  value="{$cfgobj.cfg_medias_dir}" style="width:80%"></td>
+       <td align="left" bgcolor="#ffffff">cfg_medias_dir</td>
+      </tr>
+            
+            <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">模板默认风格： </td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_df_style"  value="{$cfgobj.cfg_df_style}" style="width:80%"></td>
+       <td align="left">cfg_df_style</td>
+      </tr>
+                  <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">幻灯片图片： </td>
+       <td align="left" style="padding:3px;"><textarea name="cfg_slideimg" id="url1" style="width:80%; height:50px;">{$cfgobj.cfg_slideimg}</textarea>         <a href="javascript:void(0);" class="button" id="image1">选择图片</a></td>
+       <td align="left">cfg_df_style</td>
+      </tr>
+            <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">第三方代码： </td>
+              <td align="left" style="padding:3px;"><textarea name="cfg_thirdcode" rows="5" style="width:80%">{$cfgobj.cfg_thirdcode}</textarea>
+              (添加到网站底部)</td>
+              <td align="left">cfg_thirdcode</td>
+            </tr>
+        <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">网站URL伪静态： </td>
+       <td align="left" style="padding:3px;">
+       <htmlradio name='cfg_weijingtai' options='radioarr' selected='seled' />
+       </td>
+       <td align="left">cfg_weijingtai</td>
+      </tr>
+        <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">只对蜘蛛伪静态： </td>
+       <td align="left" style="padding:3px;">
+       <htmlradio name='cfg_spider' options='radioarr' selected='seled2' />(开启此启可以减少服务器压力)
+       </td>
+       <td align="left">cfg_spider</td>
+      </tr>
+        <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">页面压缩： </td>
+       <td align="left" style="padding:3px;">
+       <htmlradio name='cfg_pageyasuo' options='yasuoradioarr' selected='yasuoseled' />(通过去掉返回代码中多余的换行和空白实现减小代码大小,小心使用如果js写法不规范则会出错)
+       </td>
+       <td align="left">cfg_pageyasuo</td>
+      </tr>
+           </tbody></table>
+        </div>
+         <div class="kl-tab-div">
+         <table width="100%" style="" id="td1" border="0" cellspacing="1" cellpadding="1" bgcolor="#cfcfcf">
+      <tbody><tr align="right" bgcolor="#FBFCE2" height="25">
+       <td width="300" align="center">参数说明</td>
+       <td align="center">参数值</td>
+       <td width="220" align="center">变量名</td>
+      </tr>
+            <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">热搜关键字： </td>
+              <td align="left" style="padding:3px;"><input name="cfg_hotkeywords" type="text" style="width:80%" value="{$cfgobj.cfg_hotkeywords}" />关键字之间用 , 分隔开</td>
+              <td align="left">cfg_hotkeywords</td>
+            </tr>
+            <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">网站公告： </td>
+              <td align="left" style="padding:3px;"><textarea name="cfg_notice" rows="5" style="width:80%">{$cfgobj.cfg_notice}</textarea></td>
+              <td align="left">cfg_notice</td>
+            </tr>
+                        <tr align="right" height="25" bgcolor="#ffffff">
+       <td width="300">固话： </td>
+       <td align="left" style="padding:3px;"><input type="text" name="cfg_guhua"  value="{$cfgobj.cfg_guhua}" style="width:80%"></td>
+       <td align="left">cfg_guhua</td>
+      </tr>
+            <tr align="right" height="25"  bgcolor="#ffffff">
+       <td width="300">手机： </td>
+       <td align="left" bgcolor="#ffffff" style="padding:3px;"><input type="text" name="cfg_phone"  value="{$cfgobj.cfg_phone}" style="width:80%"></td>
+       <td align="left" bgcolor="#ffffff">cfg_phone</td>
+      </tr>                        <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">联系地址： </td>
+              <td align="left" style="padding:3px;"><input type="text" name="cfg_address"  value="{$cfgobj.cfg_address}" style="width:80%"></td>
+              <td align="left">cfg_address</td>
+            </tr>
+            <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">邮箱地址： </td>
+              <td align="left" style="padding:3px;"><input type="text" name="cfg_email"  value="{$cfgobj.cfg_email}" style="width:80%"></td>
+              <td align="left">cfg_email</td>
+            </tr>
+                   <tr align="right" height="25" bgcolor="#ffffff">
+              <td width="300">邮编： </td>
+              <td align="left" style="padding:3px;"><input type="text" name="cfg_youbian"  value="{$cfgobj.cfg_youbian}" style="width:80%"></td>
+              <td align="left">cfg_youbian</td>
+            </tr>
+
+           </tbody></table>
+         </div>
+    	
+    </div>
+</div>
+<table width="100%" border="0" cellspacing="1" cellpadding="1">
+      <tbody><tr bgcolor="#ffffff">
+       <td height="50" colspan="3"><table width="98%" border="0" cellspacing="1" cellpadding="1">
+         <tbody><tr>
+          <td align="center"><a href="javascript:form1.submit();" class="button">确定</a></td>
+          </tr>
+        </tbody></table></td>
+      </tr>
+     </tbody></table>
+</form>
+<script>
+$("p").bind("click",function(){
+	alert('hollow');
+	});
+$(function(){
+$.klplugin={
+
+	runtab:function(options){
+					var defaults={
+						'navhoverclsname':'navhovercls',
+						'divshowclsname':'divshowcls',
+						'model':'mouseover'
+						};
+					var opts = $.extend(defaults, options); 
+					
+					$(".kl-tab .kl-tab-div").hide();
+					$(".kl-tab .kl-tab-div:first-child").show();
+					$(".kl-tab .kl-tab-nav").bind(opts.model,function(){
+								var obj=$(this);
+						
+								 obj.parents(".kl-tab").find(".kl-tab-nav").each(function(i) {
+									if($(this).html()==obj.html()){
+								
+										obj.parents(".kl-tab").find(".kl-tab-nav").removeClass(opts.navhoverclsname);
+										obj.addClass(opts.navhoverclsname);
+								
+										obj.parents(".kl-tab").find(".kl-tab-div").hide();
+										obj.parents(".kl-tab").find(".kl-tab-div").removeClass(opts.divshowclsname);
+										
+										obj.parents(".kl-tab").find(".kl-tab-div").eq(i).addClass(opts.divshowclsname);
+										obj.parents(".kl-tab").find(".kl-tab-div").eq(i).show();
+										}			 
+								 });
+					});
+		}
+	};
+$.klplugin.runtab({
+		'navhoverclsname':'a',
+		'divshowclsname':'b',
+		'model':'click'
+		});
+	});
+</script>
+</body>
+</html>

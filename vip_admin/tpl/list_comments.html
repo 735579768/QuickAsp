@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
+<script src="js/list.js" type="text/javascript"></script>
+<title>编辑信息</title>
+</head>
+<style>
+a{ color:#000; text-decoration:none;}
+*{ margin:0px; padding:0px; font-size:12px;}
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px; line-height:28px;}
+td{ height:22px; padding:2px;}
+.np{ border:none;}
+
+.button {
+border: none;
+border-right: 1px solid #ACACAC;
+border-bottom: 1px solid #ACACAC;
+padding: 2px;
+padding-right: 5px;
+padding-left: 5px;
+background: #CCC url(images/allbtbg2.gif);
+cursor: pointer;
+}
+</style>
+<body>
+<table width="98%" border="0" cellpadding="3" align="center" cellspacing="1" bgcolor="#D6D6D6">
+<tbody><tr>
+<td height="28" background="images/tbg.gif" style="padding-left:10px;">
+<div style="float:left;">
+	<a href="feedback_main.php"><u><b>评论管理</b></u></a>
+</div>
+<div style="float:right;padding-right:10px">
+<form name="form1">
+	关键字：
+	<input type="text" size="15" name="keyword" style="width:150"> 
+ 	<select name="typeid" style="width:180">
+ 		<option value="0">--请选择--</option>
+ 		<option value="1" style="background-color:#EFEFEF;color:#666666">网页基础</option>
+<option value="2">─HTML</option>
+<option value="3">─DIV&amp;CSS</option>
+<option value="4">─Javascript/Ajax</option>
+<option value="5">─Dreamweaver</option>
+<option value="6">站长图集</option>
+<option value="7">软件下载</option>
+<option value="8">商品销售</option>
+<option value="9">分类信息</option>
+<option value="13" style="background-color:#EFEFEF;color:#666666">热门专题</option>
+<option value="14">─第一个热门专题</option>
+<option value="12">视频集合</option>
+	</select>
+	<input type="submit" name="sb" value=" 搜索 " class="coolbt">
+</form>
+</div>
+ </td>
+</tr>
+<form name="feedback"></form>
+<tr>
+<td height="215" bgcolor="#FFFFFF" valign="top">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr height="25"> 
+<td>
+<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#EEF7D2">
+<tbody><tr bgcolor="#F4FAE4"> 
+<td width="9%">
+	&nbsp;选择 <input name="fid" type="checkbox" class="np" id="fid" value="6"> 
+</td>
+<td width="12%">
+	用户：like</td>
+<td width="30%">
+	文档：<a href="feedback_main.php?aid=106"><u>{dede:招聘启事 标题='织梦大家庭新年招募第一波'}</u></a> (<a href="/dedecms/plus/view.php?aid=106" target="_blank"><u>浏览</u></a>)
+</td>
+<td width="18%" align="center">
+	IP地址：<a href="feedback_main.php?ip=127.0.0.1"><u>127.0.0.1</u></a>
+</td>
+<td width="21%">
+	时间：2010-04-09 09:17:52</td>
+<td width="10%" align="center">
+	<a href="feedback_edit.php?id=6"><img src="images/feedback-edit.gif" border="0" width="45" height="18"></a>
+</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF"> 
+<td height="28" colspan="6">
+	<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td align="left">
+[已审核]希望能够加入到织梦的大家庭!..</td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table>
+<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td height="3"></td>
+</tr>
+</tbody></table></td>
+</tr>
+<tr height="25"> 
+<td>
+<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#EEF7D2">
+<tbody><tr bgcolor="#F4FAE4"> 
+<td width="9%">
+	&nbsp;选择 <input name="fid" type="checkbox" class="np" id="fid" value="5"> 
+</td>
+<td width="12%">
+	用户：天涯</td>
+<td width="30%">
+	文档：<a href="feedback_main.php?aid=80"><u>DedeAMPZ-PHP环境整合套件</u></a> (<a href="/dedecms/plus/view.php?aid=80" target="_blank"><u>浏览</u></a>)
+</td>
+<td width="18%" align="center">
+	IP地址：<a href="feedback_main.php?ip=127.0.0.1"><u>127.0.0.1</u></a>
+</td>
+<td width="21%">
+	时间：2010-04-08 14:32:41</td>
+<td width="10%" align="center">
+	<a href="feedback_edit.php?id=5"><img src="images/feedback-edit.gif" border="0" width="45" height="18"></a>
+</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF"> 
+<td height="28" colspan="6">
+	<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td align="left">
+[已审核]不错,下载了!...</td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table>
+<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td height="3"></td>
+</tr>
+</tbody></table></td>
+</tr>
+<tr height="25"> 
+<td>
+<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#EEF7D2">
+<tbody><tr bgcolor="#F4FAE4"> 
+<td width="9%">
+	&nbsp;选择 <input name="fid" type="checkbox" class="np" id="fid" value="4"> 
+</td>
+<td width="12%">
+	用户：天涯</td>
+<td width="30%">
+	文档：<a href="feedback_main.php?aid=87"><u>DedeCMS产品商业授权</u></a> (<a href="/dedecms/plus/view.php?aid=87" target="_blank"><u>浏览</u></a>)
+</td>
+<td width="18%" align="center">
+	IP地址：<a href="feedback_main.php?ip=127.0.0.1"><u>127.0.0.1</u></a>
+</td>
+<td width="21%">
+	时间：2010-04-08 14:31:59</td>
+<td width="10%" align="center">
+	<a href="feedback_edit.php?id=4"><img src="images/feedback-edit.gif" border="0" width="45" height="18"></a>
+</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF"> 
+<td height="28" colspan="6">
+	<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td align="left">
+[已审核]支持产品授权</td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table>
+<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td height="3"></td>
+</tr>
+</tbody></table></td>
+</tr>
+<tr height="25"> 
+<td>
+<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#EEF7D2">
+<tbody><tr bgcolor="#F4FAE4"> 
+<td width="9%">
+	&nbsp;选择 <input name="fid" type="checkbox" class="np" id="fid" value="3"> 
+</td>
+<td width="12%">
+	用户：匿名</td>
+<td width="30%">
+	文档：<a href="feedback_main.php?aid=100"><u>吉林地区 礼聘 PHP程序员  网页设计师 系统运维工程师  薪酬面议</u></a> (<a href="/dedecms/plus/view.php?aid=100" target="_blank"><u>浏览</u></a>)
+</td>
+<td width="18%" align="center">
+	IP地址：<a href="feedback_main.php?ip=127.0.0.1"><u>127.0.0.1</u></a>
+</td>
+<td width="21%">
+	时间：2010-04-08 14:26:11</td>
+<td width="10%" align="center">
+	<a href="feedback_edit.php?id=3"><img src="images/feedback-edit.gif" border="0" width="45" height="18"></a>
+</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF"> 
+<td height="28" colspan="6">
+	<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td align="left">
+[已审核]哈哈,不错,我合适的了</td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table>
+<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td height="3"></td>
+</tr>
+</tbody></table></td>
+</tr>
+<tr height="25"> 
+<td>
+<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#EEF7D2">
+<tbody><tr bgcolor="#F4FAE4"> 
+<td width="9%">
+	&nbsp;选择 <input name="fid" type="checkbox" class="np" id="fid" value="2"> 
+</td>
+<td width="12%">
+	用户：天涯</td>
+<td width="30%">
+	文档：<a href="feedback_main.php?aid=95"><u>原创风景图片</u></a> (<a href="/dedecms/plus/view.php?aid=95" target="_blank"><u>浏览</u></a>)
+</td>
+<td width="18%" align="center">
+	IP地址：<a href="feedback_main.php?ip=127.0.0.1"><u>127.0.0.1</u></a>
+</td>
+<td width="21%">
+	时间：2010-04-08 14:19:16</td>
+<td width="10%" align="center">
+	<a href="feedback_edit.php?id=2"><img src="images/feedback-edit.gif" border="0" width="45" height="18"></a>
+</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF"> 
+<td height="28" colspan="6">
+	<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td align="left">
+[已审核]嗯,这些图片都很不错!</td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table>
+<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td height="3"></td>
+</tr>
+</tbody></table></td>
+</tr>
+<tr height="25"> 
+<td>
+<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#EEF7D2">
+<tbody><tr bgcolor="#F4FAE4"> 
+<td width="9%">
+	&nbsp;选择 <input name="fid" type="checkbox" class="np" id="fid" value="1"> 
+</td>
+<td width="12%">
+	用户：天涯</td>
+<td width="30%">
+	文档：<a href="feedback_main.php?aid=39"><u>Web2.0十大Ajax安全漏洞以及成因</u></a> (<a href="/dedecms/plus/view.php?aid=39" target="_blank"><u>浏览</u></a>)
+</td>
+<td width="18%" align="center">
+	IP地址：<a href="feedback_main.php?ip=127.0.0.1"><u>127.0.0.1</u></a>
+</td>
+<td width="21%">
+	时间：2010-04-08 14:14:23</td>
+<td width="10%" align="center">
+	<a href="feedback_edit.php?id=1"><img src="images/feedback-edit.gif" border="0" width="45" height="18"></a>
+</td>
+</tr>
+<tr align="center" bgcolor="#FFFFFF"> 
+<td height="28" colspan="6">
+	<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td align="left">
+[已审核]不错的教程,收获很多哦</td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table>
+<table width="98%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr> 
+<td height="3"></td>
+</tr>
+</tbody></table></td>
+</tr>
+<tr>
+<td height="20" align="center" bgcolor="#F9FCEF">
+  <span>共 1 页/6条记录</span>
+</td>
+</tr>
+<tr> 
+<td height="30">
+<table width="98%">
+<tbody><tr>
+<td width="30%">
+<input type="button" name="kk1" value="全选" onclick="selAll()" class="button np"> 
+<input type="button" name="kk2" value="取消" onclick="selNone()" class="button np">
+<input type="button" name="kk3" value="反选" onclick="selNor()" class="button np">
+</td>
+<td align="right">
+<input type="button" name="db" value=" 删除相同IP的所有评论 " onclick="delFeedbackIP()" class="button np">
+<input type="button" name="db" value=" 删除评论 " onclick="delFeedback()" class="button np">
+<input type="button" name="db2" value=" 审核评论 " onclick="checkFeedback()" class="button np">
+</td>
+</tr>
+</tbody></table>
+ </td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+<script src="js/jquery-webox.js"></script>
+<link href="css/jquery-webox.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>更新文章信息</title>
+</head>
+<style>
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
+table{ border-color:#FBFCE2;}
+table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"宋体";background-color: #FFF;}
+.sx{ text-align:center; margin:0px; padding:0px;}
+
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+.mainlist{padding:10px;}
+.mainlist li{height:28px;line-height:28px;font-size:12px;}
+.mainlist li span{margin:0 5px 0 0;font-family:"宋体";font-size:12px;font-weight:400;color:#ddd;}
+</style>
+<body>
+<form method="post" name="sqlform" id="sqlform">
+<table width="98%" border="1" cellspacing="0" style="border-collapse:collapse; margin:50px auto;" cellpadding="0">
+<tr>
+  <td colspan="2" align="center">执行SQL语句</td></tr>
+  <tr>
+    <td align="right" width="10%">SQL语句:
+    </td>
+    <td>&nbsp;
+    <textarea cols="70" name="sql" rows="10"></textarea></td>
+  </tr>
+  <tr><td colspan="2" align="center"><a class="button" href="javascript:sqlform.submit();" id="outside">执行SQL语句</a></td></tr>
+</table>
+</form>
+<div id="box" style="display:none;">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+您现在的位置：<a href="/">首页</a><position id="{$catinfo.cat_id}" jiange="-" />

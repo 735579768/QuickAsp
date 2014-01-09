@@ -1,0 +1,7 @@
+User-agent: * 
+Disallow: /ainiku/
+Disallow: /59vip/
+Disallow: /vip_admin/
+Disallow: /tpl/
+Disallow: /lib/
+Disallow: /css/

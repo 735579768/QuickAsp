@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+<script src="js/jquery-webox.js"></script>
+<link href="css/jquery-webox.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>更新文章信息</title>
+</head>
+<style>
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
+table{ border-color:#FBFCE2;}
+table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"宋体";background-color: #FFF;}
+.sx{ text-align:center; margin:0px; padding:0px;}
+</style>
+<body>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	//内嵌弹出层调用
+	$('.sel').click(function(){
+		$.webox({
+			height:280,
+			width:600,
+			bgvisibel:true,
+			title:'表单类型选择',
+			html:$("#box").html()
+		});
+	});
+	
+})
+</script>
+<form method="post" action="?updformjson=true&type_id={$type_id}" name="fieldform">
+<table width="98%%" border="1" cellspacing="0" style="border-collapse:collapse; margin:0px auto;" cellpadding="0">
+  <tr>
+    <td align="center">内容模型 ({$type_name}) 字段编辑</td>
+    </tr>
+  <tr>
+    <td align="center">字段信息编辑 <a href="#" class="button sel">数据类型说明</a></td>
+    </tr>
+   <tr><td>
+   <textarea  name="fieldtag" style="width:98%; height:600px;">
+{$fieldtag}
+   </textarea></td></tr>
+  <tr><td align="center"><a href="javascript:void(0);"  onclick="fieldform.submit();" class="button">提交</a></td></tr>
+</table>
+</form>
+</div>
+<div id="box" style="display:none;">
+<div style="padding:20px;font-weight: bolder; font-size:16px;line-height: 25px;">
+text(普通input)，
+textarea(textarea)，
+html(一个html编辑框)，
+pic(可以上传图片的表单)，<br />
+参数说明<br />
+listshow(列表中显示)<br />
+addshow(添加表单中显示)<br />
+editshow(编辑表单中显示)<br />
+editshow(编辑表单中显示)<br />
+search(要搜索的字段)<br />
+
+
+</div>
+</div>
+</body>
+</html>

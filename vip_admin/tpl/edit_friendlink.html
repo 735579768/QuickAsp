@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>更新友情链接</title>
+<style>
+*{ margin:0px; padding:0px; font-size:12px;}
+a{ text-decoration:none; color:#000;}
+</style>
+</head>
+
+<body style="background:#FFFFFF;">
+<precode>
+	<form action="edit_friendlink.asp?act=updtfriend&friend_id={$obj.friend_id}" method="post"  name="form1" id="form1">
+<table width="98%" border="1" align="center" cellpadding="3" style="border-collapse:collapse; margin:0 auto;" cellspacing="1">
+    <tr>
+    <td height="28" colspan="2" align="center" background="images/tbg.gif" style="padding-left:10px;">
+    	<span><a href="manage_friendlink.asp"><u>友情链接管理</u></a></span> &gt;&gt; 更新友情链接&gt;&gt;<a href="javascript:window.history.go(-1);" class="button">返回</a></td>
+</tr>
+<tr>
+        <td width="10%" height="25">网址：</td>
+        <td width="81%">
+        <input name="friend_url" type="text" id="url" value="{$obj.friend_url}" size="30" class="pubinputs">
+        </td>
+      </tr>
+      
+      <tr>
+        <td height="25">网站名称：</td>
+        <td><input name="friend_name" type="text" size="30" value="{$obj.friend_name}" class="pubinputs"></td>
+      </tr>
+      
+      
+      
+      <tr>
+        <td height="25">站长Email：</td>
+        <td><input name="friend_email" type="text" size="30" value="{$obj.friend_email}" class="pubinputs"></td>
+      </tr>
+      <tr style="display:none;">
+        <td height="25">链接位置：</td>
+        <td><input type="radio" name="friend_weizhi" value="2" checked="1"> 首页
+        	<input type="radio" name="friend_weizhi" value="1"> 内页
+        	
+        </td>
+      </tr>
+      <tr>
+        <td  height="25">排列位置：</td>
+        <td>
+        <input name="sortrank" type="text" id="sortrank" value="{$obj.sortrank}" size="10" class="pubinputs" style="width:60px">
+        (由小到大排列)
+        </td>
+      </tr>
+      <tr>
+              <td  >显示：</td>
+              <td ><input name="show" type="text" id="sortrank" value="1" size="10" class="pubinputs" style="width:60px">
+                (0不显示，1显示) </td>
+            </tr>
+      <tr>
+        <td height="51" colspan="2" align="center">
+             <a href="javascript:form1.submit();" class="np button">更新链接</a>　
+                <a href="javascript:void(0);"onclick="window.history.go(-1);"  class="np button">返 回</a>　      </td>
+      </tr>
+</table>
+</form>
+</precode>
+</body>
+</html>

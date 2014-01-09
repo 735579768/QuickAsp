@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+<script src="js/jquery-webox.js"></script>
+<link href="css/jquery-webox.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>更新文章信息</title>
+</head>
+<style>
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
+table{ border-color:#FBFCE2;}
+table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"宋体";background-color: #FFF;}
+.sx{ text-align:center; margin:0px; padding:0px;}
+</style>
+<body>
+
+<!--{if "{$act}"="runsql"}-->
+<form method="post" name="datatable" >
+<table width="98%" border="1" align="center" style="border-collapse:collapse; margin:50px auto;">
+<tr><td colspan="2" align="center">内容模型管理<span style="color:red;">(此处设置非程序员请勿操作)</span></td></tr>
+<tr><td align="right">内容模型名称：</td><td><input type="text" value="新模型" name="type_name" /></td></tr>
+  <tr>
+<tr><td align="right">新建数据表名：</td><td><input type="text" value="kl_test" name="data_table" /></td></tr>
+  <tr>
+    <td align="right" width="30%">sql语句：</td>
+    <td><textarea name="sql" cols="70" rows="10">
+    		CREATE TABLE kl_test
+                    (
+                        ID Counter primary key,
+                        cat_id int not null,
+                        type_id int not null,
+                        Title Text(255) Not Null,
+                        Content Memo,
+                        descr Memo,
+                        pic text(255),
+                        hits int not null,
+                        keys text(255),
+                        tpl text(50),
+                        hometj int not null,
+                        recycling int not null,
+                        source text(255),
+                        author Text(255),
+                        fbdate datetime,
+                        uddate datetime
+                        
+                    )
+    </textarea></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><a href="javascript:void(0);" onclick="datatable.submit();" class="button">执行SQL语句</a></td>
+  </tr>
+ </table>
+ </form>
+<!--{/if}-->
+<!--{if "{$act}"="addmodel"}-->
+<form action="" id="contentmodel" method="post">
+<table width="98%" border="1" align="center" style="border-collapse:collapse; margin:50px auto;">
+<tr><td colspan="2" align="center">内容模型管理<span style="color:red;">(此处设置非程序员请勿操作)</span></td></tr>
+  <tr>
+    <td align="right" width="45%">模型名称：</td>
+    <td><input type="text" name="type_name" value="新模型" /></td>
+  </tr>
+  <tr>
+    <td align="right">数据表：</td>
+    <td><input type="text" name="data_table" value="{$data_table}" /></td>
+  </tr>
+  <tr>
+    <td align="right">添加数据表单：</td>
+    <td><input type="text" name="tpl_addform" value="add_article.html" /></td>
+  </tr>
+  <tr>
+    <td align="right">编辑数据表单：</td>
+    <td><input type="text" name="tpl_editform" value="edit_article.html" /></td>
+  </tr>
+  <tr>
+    <td align="right">封面模板：</td>
+    <td><input type="text" name="tpl_index" value="article_index.html" /></td>
+  </tr>
+  <tr>
+    <td align="right">列表模板：</td>
+    <td><input type="text" name="tpl_list" value="article_list.html" /></td>
+  </tr>
+  <tr>
+    <td align="right">信息模板：</td>
+    <td><input type="text" name="tpl_article" value="article_detail.html" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+    <input type="hidden" name="act" value="addconmodel" />
+    <a href="javascript:void(0);" onclick="contentmodel.submit();" class="button">添加模型</a> <a href="javascript:window.history.go(-1);" class="button">返回</a></td>
+    </tr>
+</table>
+
+</form>
+<!--{/if}-->
+<!--{if "{$act}"="editfield"}-->
+<form method="post" action="?updformjson=true&type_id={$type_id}" name="fieldform">
+<table width="98%%" border="1" cellspacing="0" style="border-collapse:collapse; margin:50px auto;" cellpadding="0">
+  <tr>
+    <td colspan="3" align="center">内容模型 ({$type_name}) 列表字段显示</td>
+    </tr>
+  <tr>
+    <td width="30%" align="center">字段</td>
+    <td width="40%" align="center">描述</td>
+    <td width="30%" align="center">列表显示(1显示,0不显示)</td>
+  </tr>
+ <!--{foreach name="arr" var="var" iteration="num"}-->
+  <tr>
+    <td width="30%" align="right"><input name="auto_{$var}{$num}" type="hidden" />{$var}</td>
+    <td ><input type="text" name="{$var}1{$num}" value="{$var}" /></td>
+    <td><input type="text" name="{$var}2{$num}" value="0" /></td>
+  </tr>
+  <!--{/foreach}-->
+  <tr><td colspan="3" align="center"><a href="javascript:void(0);"  onclick="fieldform.submit();" class="button">提交</a></td></tr>
+</table>
+</form>
+<!--{/if}-->
+</div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+a{ color:#000; text-decoration:none;}
+*{ margin:0px; padding:0px; font-size:12px;}
+.biaotou{background:url(../images/tbg.gif) repeat-x; height:28px; line-height:28px;}
+table,tr,td{ border-color:#cfcfcf;}
+td{ height:22px; padding:2px; line-height:22px;}
+.np{ border:none;}
+select,input{ height:20px; padding:2px; line-height:20px;}
+select{ height:25px;}
+.red{ color:#F00;}
+.green{ color:#0f0;}
+input,select{border:solid 1px #ccc;}
+.lanmu dd.menujibie2{ height:auto; padding:0px 0px; _width:auto; line-height:auto;}
+.lanmu dd.menujibie2 dl{ margin:0px; padding:0px;}
+.menujibie2,dd.menujibie2{ display:inline-block; _padding-left:0px;}
+dd.menujibie2 .lanmu dt{ padding-left:80px}
+dd.menujibie2 .lanmu dd{ padding-left:130px;}
+dd.menujibie2 .lanmu dt .left{ width:490px;}
+dd.menujibie2 .lanmu dd .left{ width:440px;}
+
+
+dd.menujibie2 .lanmu dd.menujibie3{ height:auto; padding:0px 0px; _width:auto; line-height:auto;}
+dd.menujibie2 .lanmu dd.menujibie3 .lanmu .dt{ padding-left:40px;}
+.lanmu dd.menujibie3 dl{ margin:0px; padding:0px;}
+.menujibie3,dd.menujibie3{ display:inline-block;}
+dd.menujibie3 .lanmu dt{ padding-left:120px}
+dd.menujibie3 .lanmu dd{ padding-left:160px;}
+dd.menujibie3 .lanmu dt .left{ width:450px;}
+dd.menujibie3 .lanmu dd .left{ width:410px;}
+
+
+dd.menujibie2 .lanmu dd.menujibie4{ height:auto; padding:0px 0px; _width:auto; line-height:auto;}
+dd.menujibie2 .lanmu dd.menujibie4 .lanmu .dt{ padding-left:40px;}
+.lanmu dd.menujibie4 dl{ margin:0px; padding:0px;}
+.menujibie4,dd.menujibie4{ display:inline-block;}
+dd.menujibie4 .lanmu dt{ padding-left:120px}
+dd.menujibie4 .lanmu dd{ padding-left:160px;}
+dd.menujibie4 .lanmu dt .left{ width:450px;}
+dd.menujibie4 .lanmu dd .left{ width:410px;}
+
+.pagenav,.pagenav a,.pagenav font{ font-size:12px; color:#666;text-align: center;}
+.pagenav a:hover,.pagenav a:hover font{ color:#000; background:#ebebeb;}
+.pagenav a,.pagenav font{ display:inline-block; height:20px; height:20px; padding:0px 6px; line-height:20px;border: 1px solid #E7ECF0;}
+.pagenav a font{ margin:0px; padding:0px; border:none;}
+
+
+input:focus, input:hover, input:active, input:focus, input:hover, input:active, textarea:hover, textarea:focus, textarea:active {
+color: #33464F;
+background-color: #FFF;
+border: 1px solid;
+border-color: #59595A /*#CBE9F3 #CBE9F3 #59595A*/;
+-moz-box-shadow: 0 0 5px rgba(82, 168, 236, 0.5);
+-webkit-box-shadow: 0 0 5px rgba(82, 168, 236, 0.5);
+box-shadow: 0 0 5px rgba(82, 168, 236, 0.5);
+}
+input,input, input, textarea, select, .type-file-text, .editable, .editable2, .editable-tarea, .editable-tarea2 {
+ border:solid 1px #ccc;
+background:#fefefe;
+padding: 2px 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+resize: none;
+height:25px;
+line-height:25px;
+}
+
+
+
+    .button
+    {        
+        display: inline-block;
+        white-space: nowrap;
+        background-color: #ccc;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ccc));
+        background-image: -webkit-linear-gradient(top, #eee, #ccc);
+        background-image: -moz-linear-gradient(top, #eee, #ccc);
+        background-image: -ms-linear-gradient(top, #eee, #ccc);
+        background-image: -o-linear-gradient(top, #eee, #ccc);
+        background-image: linear-gradient(top, #eee, #ccc);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
+        border: 1px solid #bbb;
+        padding: 0 1em;
+        margin:0 2px;
+	    _margin:2px;
+        font:  1em/2em Arial, Helvetica;
+        text-decoration: none;
+        color: #333;
+        text-shadow: 0 1px 0 rgba(255,255,255,.8);
+        -moz-border-radius: .2em;
+        -webkit-border-radius: .2em;
+        border-radius: .2em;
+        -moz-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+        -webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+        box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+		cursor:pointer;
+    }
+    
+    .button:hover
+    {
+        background-color: #ddd;        
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ddd));
+        background-image: -webkit-linear-gradient(top, #fafafa, #ddd);
+        background-image: -moz-linear-gradient(top, #fafafa, #ddd);
+        background-image: -ms-linear-gradient(top, #fafafa, #ddd);
+        background-image: -o-linear-gradient(top, #fafafa, #ddd);
+        background-image: linear-gradient(top, #fafafa, #ddd);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#fafafa', EndColorStr='#dddddd');        
+    }
+    
+    .button:active
+    {
+        -moz-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        -webkit-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+        position: relative;
+        top: 1px;
+    }
+    
+    .button:focus
+    {
+        outline: 0;
+        background: #fafafa;
+    }    
+    
+    .button:before
+    {
+        background: #ccc;
+        background: rgba(0,0,0,.1);
+        float: left;        
+        width: 1em;
+        text-align: center;
+        font-size: 1.5em;
+        margin: 0 1em 0 -1em;
+        padding: 0 .2em;
+        -moz-box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+        -webkit-box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+        box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+        -moz-border-radius: .15em 0 0 .15em;
+        -webkit-border-radius: .15em 0 0 .15em;
+        border-radius: .15em 0 0 .15em;        
+    }
+    
+    /* Hexadecimal entities for the icons */
+    
+    .add:before
+    {
+        content: "\271A";
+    }
+    
+    .edit:before
+    {
+        content: "\270E";        
+    }
+    
+    .delete:before
+    {
+        content: "\2718";        
+    }
+    
+    .save:before
+    {
+        content: "\2714";        
+    }
+    
+    .email:before
+    {
+        content: "\2709";        
+    }
+    
+    .like:before
+    {
+        content: "\2764";        
+    }
+    
+    .next:before
+    {
+        content: "\279C";
+    }
+    
+    .star:before
+    {
+        content: "\2605";
+    }
+    
+    .spark:before
+    {
+        content: "\2737";
+    }
+    
+    .play:before
+    {
+        content: "\25B6";
+    }      
+.catimg .catdaimg{ width:150px; height:150px; display:table-cell; vertical-align:middle;
+border: solid 3px #ccc;
+padding: 2px;
+background:#ffffff;
+}
+.catimg .catdaimg img{
+max-width:150px;
+_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>150?"150px":"auto");
+max-height:150px;
+_height:expression((document.documentElement.clientHeight||document.body.clientHeight)>150?"150px":"auto");
+}	
+	}

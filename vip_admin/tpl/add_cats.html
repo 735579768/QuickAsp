@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>添加信息</title>
+</head>
+<style>
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
+table{ border-color:#FBFCE2;}
+table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"宋体";background-color: #FFF;}
+.kl-tab{}
+.kl-tab-nav{ cursor:pointer;display:block; height:30px; float:left;line-height: 30px;width: 100px;text-align: center;border-right: solid 1px #ccc;}
+.kl-tab .kl-tab-nav-block,.kl-tab .kl-tab-div-block{ display:block; width:100%; float:left;}
+.kl-tab .kl-tab-div{ width:100%;}
+</style>
+<body>
+<script charset="utf-8" src="editor/kindeditor.js"></script>
+<script charset="utf-8" src="editor/lang/zh_CN.js"></script>
+<script>
+			var editor;
+			KindEditor.ready(function(K) {
+					editor = K.create('textarea[name="cat_singlecontent"]', {
+					'allowFileManager' : true,
+					'uploadJson': 'editor/asp/upload_json.asp',
+					'fileManagerJson': 'editor/asp/file_manager_json.asp',
+//					'imageUploadJson':'../../../uploads',
+					'allowFlashUpload':true,
+					'allowFileManager':true,
+					'allowPreviewEmoticons':true,
+					'afterBlur':function(){this.sync();}
+				});
+								//////////////////////////////////////////
+			K('#image1').click(function() {
+					editor.loadPlugin('image', function() {
+						editor.plugin.imageDialog({
+							imageUrl : K('#url1').val(),
+							clickFn : function(url, title, width, height, border, align) {
+								K('#url1').val(url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+				/////////////////////////////////////////
+			});
+		</script>
+<form action="?act=add" id="addchildcatsform" method="post">
+<div class="kl-tab">
+<ul class="kl-tab-nav-block">
+	<li class="kl-tab-nav">基本信息</li>
+    <li class="kl-tab-nav">高级选项</li>
+    <li class="kl-tab-nav">栏目模板</li>
+    <li class="kl-tab-nav">栏目内容</li>
+</ul>
+    <div class="kl-tab-div-block">
+        <div class="kl-tab-div"><table width="98%" style=" margin:10px auto;border-collapse:collapse;" border="1" cellspacing="0" cellpadding="0">
+ <tr>
+ 	<td height="28" colspan="6" align="center" class="biaotou">分类栏目管理&gt;&gt;<a href="cats_list.asp" class="button">分类列表</a>>>增加分类</td>
+ </tr>
+ 
+ <!---信息标题-->
+  <tr>
+    <td width="100px">所属顶级分类：</td>
+    <td><input type="hidden" name="parent_id" value="{$obj.parent_id}" />{$obj.cat_name}</td>
+  </tr>
+  <tr>
+    <td width="100px">分类名称：</td>
+    <td><input name="cat_name"  type="text" value="" /></td>
+  </tr>
+  <tr align="left">
+    <td width="90">分类图片展示：</td>
+    <td><input name="cat_pic" type="text" id="url1" value="{$obj.cat_pic}" style="width:200px" /> <a href="javascript:void(0);"  id="image1" class="button">选择图片</a></td>
+  </tr>
+  <tr>
+    <td width="100px">显示/隐藏：</td>
+    <td>  <input name="cat_show" type="text"  value="0" size="5" maxlength="1" />&nbsp;显示(1)隐藏(0)</td>
+  </tr>
+  <tr>
+    <tr>
+    <td width="100px">内容模型：</td>
+    <td> {$obj.typeidsel}</td>
+  </tr>
+  <tr>
+    <td width="100px">排序：</td>
+    <td><input name="sort" type="text"  value="0" /></td>
+  </tr>
+  <tr>
+    <td width="100px" align="left">分类属性：</td>
+    <td><input name="catflag" type="text" value="2" />(0是空分类,1是封面内容,2是列表内容)</td>
+  </tr>
+<tr><td colspan="2" align="center">
+<a href="javascript:tjyanzheng();" class="button">添加分类</a>
+    <a href="javascript:window.history.go(-1);" class="button">返回</a></td></tr>
+</table></div>
+        <div class="kl-tab-div"><table width="98%" style=" border-collapse:collapse; text-align:left;" border="0">
+  <tr>
+  	<td width="10%">封面模板：</td>
+    <td><input name="cat_index" type="text" value="{$obj.cat_index}" style="width:200px; height:20px;" /></td>
+  </tr>
+  <tr>
+  	<td width="10%">列表模板：</td>
+    <td><input name="cat_list" type="text" value="{$obj.cat_list}" style="width:200px; height:20px;" /></td>
+  </tr>
+  <tr>
+  	<td width="10%">文章模板：</td>
+    <td><input name="cat_article" type="text" value="{$obj.cat_article}" style="width:200px; height:20px;" /></td>
+  </tr>
+  <tr>
+  	<td width="10%">seo标题：</td>
+    <td><input name="cat_seotitle" type="text" style="width:300px; height:30px;" /></td>
+  </tr>
+  <tr>
+  	<td width="10%">seo关键字：</td>
+    <td><textarea name="cat_seokeys"  style="width:400px; height:30px;"></textarea></td>
+  </tr>
+  <tr>
+  	<td width="10%">seo描述：</td>
+    <td><input name="cat_seodescr" type="text" style="width:600px; height:50px;"  /></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2"> <a href="javascript:tjyanzheng();" class="button">添加分类</a>
+    <a href="javascript:window.history.go(-1);" class="button">返回</a></td></tr>
+</table></div>
+        <div class="kl-tab-div"><table width="98%" style=" border-collapse:collapse;" border="0">
+  <tr>
+    <td>说明：栏目内容是替代原来栏目单独页的更灵活的方式，如果下面有内容的话，这个分类的封面将直接显示这个内容模板</td>
+  </tr>
+  <tr><td align="left">
+  <input type="radio" name="cat_single" value="1" />
+  启用自定义模板
+  <input  name="cat_single" type="radio" value="0" checked="checked" />
+  不启用自定义模板
+  </td></tr>
+  <tr>
+  <td>
+
+  <textarea name="cat_content" style="width:99%;height:600px;"></textarea>
+  </td>
+  </tr>
+  <tr>
+    <td align="center"><a href="javascript:tjyanzheng();" class="button">添加分类</a>
+    <a href="javascript:window.history.go(-1);" class="button">返回</a></td></tr>
+</table></div>
+<div class="kl-tab-div">
+<table width="98%"  border="0">
+  <tr>
+    <td>栏目内容在页面中用{$cat_singlecontent}就可以调用</td>
+  </tr>
+  <tr>
+    <td><textarea name="cat_singlecontent" style="width:100%;height:400px;visibility:hidden;"></textarea></td>
+  </tr>
+    <tr>
+    <td align="center"><a href="javascript:tjyanzheng();" class="button">添加分类</a>
+    <a href="javascript:window.history.go(-1);" class="button">返回</a></td></tr>
+</table>
+
+</div>
+    </div>
+</div>
+
+</form>
+
+
+
+<script type="text/javascript">
+$(function(){
+	$.klplugin={
+	/////////////////////////////////////////////////////tab切换特效/////////////////////////////////////////////
+	runtab:function(options){
+					var defaults={
+						'navhoverclsname':'navhovercls',//nav显示时候拥有的类
+						'divshowclsname':'divshowcls',//div显示的时候拥有的类
+						'model':'mouseover'//tab的切换模式，默认为mouseover
+						};
+					var opts = $.extend(defaults, options); 
+					
+					$(".kl-tab .kl-tab-div").hide();
+					$(".kl-tab .kl-tab-div:first-child").show();
+					$(".kl-tab .kl-tab-nav").bind(opts.model,function(){
+								var obj=$(this);
+								 //查找要显示的div索引
+								 obj.parents(".kl-tab").find(".kl-tab-nav").each(function(i) {
+									if($(this).html()==obj.html()){
+										//设置hover类
+										obj.parents(".kl-tab").find(".kl-tab-nav").removeClass(opts.navhoverclsname);
+										obj.addClass(opts.navhoverclsname);
+										//隐藏掉所有的tabdiv
+										obj.parents(".kl-tab").find(".kl-tab-div").hide();
+										obj.parents(".kl-tab").find(".kl-tab-div").removeClass(opts.divshowclsname);
+										
+										obj.parents(".kl-tab").find(".kl-tab-div").eq(i).addClass(opts.divshowclsname);
+										obj.parents(".kl-tab").find(".kl-tab-div").eq(i).show();
+										}			 
+								 });
+					});
+		}
+	};
+$.klplugin.runtab({
+		'navhoverclsname':'a',//nav显示时候拥有的类
+		'divshowclsname':'b',//div显示的时候拥有的类
+		'model':'click'
+		});
+	});
+function tjyanzheng(){
+	if (!$("input[name='cat_name']").val()){
+		alert('分类名字不能为空!');
+		return false;
+		}
+	addchildcatsform.submit();
+	}
+$(function(){
+$("#delimg").bind("click",function(){
+	if(confirm("确认要删除?")){
+	$.get("uploadimg/index.asp",{
+									act:'delimg',
+									imgpath:$("#pic").val()
+										},function(data){
+								if(data==1){
+									alert('删除成功！');
+									}else{
+									alert('文件删除错误！');
+										}
+									$("#pic").val('');
+									$("#pic").change();
+		});
+	}
+	});
+$("#pic").bind("change",function(){
+	if($(this).val()!=""){
+		$("#delimg").show();
+		$("#picimg").show();
+		$("#picimg").attr("src",$(this).val());
+		}else{
+		$("#delimg").hide();
+		$("#picimg").hide();	
+			}
+	});
+$("option[value=0]").remove();
+});
+function cha(){
+	$("#pic").change();
+	}
+</script>
+</body>
+</html>

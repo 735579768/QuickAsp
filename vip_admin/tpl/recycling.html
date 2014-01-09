@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.1.min.js" type="text/javascript"></script>
+<script src="js/list.js" type="text/javascript"></script>
+<title>回收站</title>
+</head>
+<style>
+a{ color:#000; text-decoration:none;}
+*{ margin:0px; padding:0px; font-size:12px;}
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px; line-height:28px;}
+td{ height:22px; padding:2px;}
+.np{ border:none;}
+
+.pagenav,.pagenav a,.pagenav font{ font-size:12px; color:#666;text-align: center;}
+.pagenav a:hover,.pagenav a:hover font{ color:#000; background:#ebebeb;}
+.pagenav a,.pagenav font{ display:inline-block; height:20px; height:20px; padding:0px 6px; line-height:20px;border: 1px solid #E7ECF0;}
+.pagenav a font{ margin:0px; padding:0px; border:none;}
+</style>
+<body>
+<form name="batchhuanyuan" id="batchhuanyuan" action="">
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cfcfcf" align="center">
+<tbody><tr bgcolor="#E7E7E7">
+<td height="28" colspan="7" align="center" background="images/tbg.gif" style="padding-left:10px;">
+	<b>文档回收站</b> &nbsp;&lt;&lt;<a href="javascript:window.history.go(-1);" class="button">返回</a>
+</td>
+</tr>
+
+<tr align="center" bgcolor="#FBFCE2" height="25">
+<td width="6%">ID</td>
+<td width="4%">选择</td>
+<td width="28%">文章标题</td>
+<td width="10%">更新时间</td>
+<td width="10%">类目</td>
+<td width="8%">点击</td>
+<td width="10%">操作</td>
+</tr>
+<!--{arclist sql="{$sql}" pagesize="20" pagenav="pagenav"}-->
+<tr align="center" bgcolor="#FFFFFF" onmousemove="javascript:this.bgColor='#FCFDEE';" onmouseout="javascript:this.bgColor='#FFFFFF';" height="25" oncontextmenu="ShowMenu(event,this,91,'DedeCMS%E4%BA%A7%E5%93%81%E7%9B%B8%E5%85%B3%E6%88%AA%E5%9B%BE')">
+<td>{$ID}</td>
+<td><input type="checkbox"  value="{$id}" class="np checkid"></td>
+<td align="left">
+	<a href=""><u title="{$arctitle}">{$arctitle|left=16}</u></a>
+</td>
+<td>{$uddate}</td>
+<td>{$cat_name}</td>
+<td>81</td>
+<td><a href="?act=huanyuan&id={$id}&page={$page}">还原</a> | <a href="?act=del&id={$id}&page={$page}">删除</a></td>
+</tr>
+<!--{/arclist}-->
+<tr bgcolor="#ffffff">
+  <td height="24" colspan="7">
+  &nbsp;
+  <a href="javascript:selAll()" class="button">全选</a>
+  <a href="javascript:noSelAll()" class="button">取消全选</a>
+  <a href="javascript:void(0)" onclick="batchhuanyuan.submit();" class="button">&nbsp;还原选中&nbsp;</a>
+  <a href="javascript:delall()" class="button">&nbsp;彻底删除&nbsp;</a></td>
+</tr>
+
+<tr align="right" bgcolor="#F9FCEF">
+<td height="30" colspan="7" align="center">
+	<div class="pagenav">{$pagenav}</div></td>
+</tr>
+</tbody></table>
+<input type="hidden" name="act" value="huanyuan" />
+<input type="hidden" name="batchid" id="batchidstr" value="" />
+</form>
+<script type="text/javascript">
+$(function(){
+		//选择文章id
+		$(".checkid").bind("click",function(){
+				setBatchIdStr();
+		});
+	});
+//批量删除文章
+function delall(){
+	$("input[name='act']").val("del");
+	if(!confirm("删除后将不可恢复！"))return
+	$("#batchhuanyuan").submit();
+	//batchhuanyuan.submit();
+	}
+</script>
+</body>
+</html>

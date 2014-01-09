@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网站后台管理</title>
+<link href="css/frame.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body class="showmenu">
+<div class="header">
+<div class="top"><!--{include file="header_top.html"}--></div>
+<div class="topnav">
+<ul class="navleft">
+<li><a id="hidemenu" href="javascript:void(0);">隐藏菜单</a></li>
+
+</ul>
+<ul class="navright">
+<li><a href="main.asp" title="系统首页" target="main">系统首页</a></li>
+</ul>
+</div>
+</div>
+<div class="left">
+  <div class="menu" id="menu">
+    <iframe id="menufra"  name="menu" frameborder="0" src="menus.asp"  ></iframe>
+  </div>
+</div>
+<div class="right">
+  <div class="main">
+    <iframe id="main" name="main" frameborder="0" src="main.asp"></iframe>
+  </div>
+</div>
+<script>
+function correctPNG() // correctly handle PNG transparency in Win IE 5.5 & 6. 
+{ 
+    var arVersion = navigator.appVersion.split("MSIE") 
+    var version = parseFloat(arVersion[1]) 
+    if ((version >= 5.5) && (document.body.filters)) 
+    { 
+       for(var j=0; j<document.images.length; j++) 
+       { 
+          var img = document.images[j] 
+          var imgName = img.src.toUpperCase() 
+          if (imgName.substring(imgName.length-3, imgName.length) == "PNG") 
+          { 
+             var imgID = (img.id) ? "id='" + img.id + "' " : "" 
+             var imgClass = (img.className) ? "class='" + img.className + "' " : "" 
+             var imgTitle = (img.title) ? "title='" + img.title + "' " : "title='" + img.alt + "' " 
+             var imgStyle = "display:inline-block;" + img.style.cssText 
+             if (img.align == "left") imgStyle = "float:left;" + imgStyle 
+             if (img.align == "right") imgStyle = "float:right;" + imgStyle 
+             if (img.parentElement.href) imgStyle = "cursor:hand;" + imgStyle 
+             var strNewHTML = "<span " + imgID + imgClass + imgTitle 
+             + " style=\"" + "width:" + img.width + "px; height:" + img.height + "px;" + imgStyle + ";" 
+             + "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader" 
+             + "(src=\'" + img.src + "\', sizingMethod='scale');\"></span>" 
+             img.outerHTML = strNewHTML 
+             j = j-1 
+          } 
+       } 
+    }     
+} 
+if(window.attachEvent){
+	window.attachEvent("onload", correctPNG);
+	}
+window.onerror=function(){return true;};
+
+$(document).ready(function(e) {
+    $("#hidemenu").bind("click",function(){
+		var a=$(this).html();
+		if(a=='隐藏菜单'){
+			$("body").attr('class','hidemenu');
+			$(this).html('显示菜单');
+			}else{
+			$("body").attr('class','showmenu');
+			$(this).html('隐藏菜单');	
+				}
+		});
+});
+</script>
+</body>
+</html>

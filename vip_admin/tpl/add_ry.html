@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.8.1.min.js" language="javascript" type="text/javascript"></script>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<title>添加信息</title>
+</head>
+<style>
+.biaotou{background:url(images/tbg.gif) repeat-x; height:28px;}
+table{ border-color:#FBFCE2;}
+table td table td,table td table{ border:none; text-align:left; line-height:28px; height:28px;}
+td{border-bottom: 1px dotted #BCBCBC;height: 28px; padding:2px; font-size:12px; font-family:"宋体";background-color: #FFF;}
+.sx{ text-align:center; margin:0px; padding:0px;}
+</style>
+<script charset="utf-8" src="editor/kindeditor-min.js"></script>
+<script charset="utf-8" src="editor/lang/zh_CN.js"></script>
+<script>
+			var editor;
+			KindEditor.ready(function(K) {
+					editor = K.create('textarea[name="arccontent"]', {
+					'allowFileManager' : true,
+					'uploadJson': 'editor/asp/upload_json.asp',
+					'fileManagerJson': 'editor/asp/file_manager_json.asp',
+//					'imageUploadJson':'../../../uploads',
+					'allowFlashUpload':true,
+					'allowFileManager':true,
+					'filterMode':false,
+					'allowPreviewEmoticons':true,
+					'afterBlur':function(){this.sync();}
+				});
+								//////////////////////////////////////////
+			K('#image1').click(function() {
+					editor.loadPlugin('image', function() {
+						editor.plugin.imageDialog({
+							imageUrl : K('#url1').val(),
+							clickFn : function(url, title, width, height, border, align) {
+								K('#url1').val(url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+				/////////////////////////////////////////
+			});
+		</script>
+<body>
+<form action="" id="addarc" method="post">
+<table width="98%" style="border-collapse:collapse; margin-bottom:50px;" border="1" cellspacing="0" cellpadding="0">
+ <tr>
+ 	<td height="28" colspan="2" align="center" class="biaotou">内容添加&gt;&gt;<a href="javascript:window.history.go(-1);" class="button">返回</a></td>
+ </tr>
+  <tr width="10%">
+    <td>编辑：</td>
+    <td><input name="arcauthor" type="text"  value="{$author}" style="width:100px"></td>
+  </tr>
+   <tr width="10%">
+    <td>荣誉级别：</td>
+    <td><input name="arcsource" type="text"   value="" style="width:200px"></td>
+  </tr>
+ <!---信息标题-->
+  <tr width="10%">
+    <td>荣誉标题：</td>
+    <td><input name="arctitle" type="text"   value="" style="width:388px"></td>
+  </tr>
+  <!--信息分类-->
+  <tr>
+    <td width="90">荣誉时间：</td>
+    <td>
+    <input name="arcflag"  value="" /></td>
+  </tr>
+     <tr>
+    <td width="90">信息分类：</td>
+    <td>
+{$catidsel}<span class="red">(只能在同样信息类型下更改所属分类)</span></td>
+  </tr>
+  <tr style="display:none;">
+    <td width="90">内容模型：</td>
+    <td>
+    {$type_name} <input type="hidden" name="type_id" value="{$type_id}" /></td>
+  </tr>
+
+  <tr style="display:none;">
+    <td width="90" >内容模板：</td>
+    <td>
+    <input type="text" name="arctpl" value="{$arctpl}" /></td>
+  </tr>
+
+
+  <!--图片信息展示-->
+  <tr>
+    <td width="90">荣誉图片展示：</td>
+    <td><input name="arcpic" type="text" id="url1" value="{$arcpic}" style="width:388px" /> <input type="button" id="image1" value="选择图片" /></td>
+  </tr>
+    <!--关键字-->
+    <tr width="10%">
+    <td>荣誉关键字：</td>
+    <td><input name="arckeys" type="text"   value="" style="width:400px">
+      (关键字用','号分开)</td>
+  </tr>
+    <!--关键字-->
+    <tr width="10%">
+    <td>荣誉描述：</td>
+    <td><textarea name="arcdescr" cols="70" rows="3"  style="width:400px"></textarea>
+      (文章描述)</td>
+  </tr>
+  <!--内容-->
+  <tr>
+    <td>荣誉内容：</td>
+    <td><textarea name="arccontent" style="width:710px;height:400px;visibility:hidden;"></textarea></td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+    <input type="hidden" name="isaddarticle" value="true" />
+    <input type="submit"  value="添加文章"  style="width:70px" class="coolbt checkform">
+    <input type="button"  value="返回" onclick="window.history.go(-1);"  style="width:70px" class="coolbt">
+    </td>
+  </tr>
+</table>
+</form>
+<script>
+$(function(){
+$("#delimg").bind("click",function(){
+	if(confirm("确认要删除?")){
+	$.get("uploadimg/index.asp",{
+									act:'delimg',
+									imgpath:$("#pic").val()
+										},function(data){
+								if(data==1){
+									alert('删除成功！');
+									}else{
+									alert('文件删除错误！');
+										}
+									$("#pic").val('');
+									$("#pic").change();
+		});
+	}
+	});
+$("#pic").bind("change",function(){
+	if($(this).val()!=""){
+		$("#delimg").show();
+		$("#picimg").show();
+		$("#picimg").attr("src",$(this).val());
+		}else{
+		$("#delimg").hide();
+		$("#picimg").hide();	
+			}
+	});
+$(".checknonull").bind("blur",function(){
+		if($(this).val()==''){
+			alert("信息不能为空!");
+			return false;
+			}
+	});
+//表单提交验证
+$("#addarc").submit(function(e) {
+	var i=0;
+	$(".checknonull").each(function(index, element) {
+        if($(this).val()==''){
+			i++;
+			}
+    });
+	if(i!=0){
+		alert('信息不能为空！');
+		return false;
+		}else{
+	    return true;
+			}
+
+});
+
+});
+function cha(){
+	$("#pic").change();
+	}
+</script>
+</body>
+</html>
