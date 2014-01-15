@@ -486,6 +486,21 @@ class AspTpl
 			debugstr()
 	end function
 	'=================================================
+	'返回解析字符串模板
+	'==================================================
+	public function fetch(tplfile)
+'		nu=instrrev(tplfile,".")
+'		if nu=0 then 
+'			tplfile=tplfile&p_tpl_suffix
+'		else
+'			tplfile=mid(tplfile,1,nu-1)&p_tpl_suffix
+'		end if
+		'这里解析的顺序不能错
+		p_tpl_file=tplfile
+		checkTplDirAndFile()'载入模板
+		fetch=jiexiTpl()
+	end function
+	'=================================================
 	'解析字符串模板
 	'==================================================
 	private Function debugstr()
@@ -505,7 +520,7 @@ class AspTpl
 		end if
 		runsqlstr=runsqlstr&"</ul>"
 		runtime="<div id='debugsqlshow' style=' border:solid 1px #ccc;width:auto; height:40px; line-height:40px; text-align:center; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); right:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;'>执行"&db.kl_sqlnum&"个sql语句,执行时间：<font color=""#ff0000"">"&time_ijob&"</font> 毫秒<div>"
-		response.Write "<style>*html{background-image:url(about:blank);background-attachment:fixed;}#debugsql ul li,#debug ul li{ border:none;border-bottom: solid 1px #EDEDED;line-height: 20px;padding: 2px 0px;}</style><div id='debug' style='z-index:9; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); left:0px; "&debugshow&" bottom:0px; width:500px; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div id='debugclose' style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' >X</div><ul>"&p_errstr&"</ul></div><div id='debugshow' style='width:100px; height:40px; line-height:40px; text-align:center; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); left:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;border:solid 1px #ccc;'>DEBUG</div><div id='debugsql' style='z-index:9; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); right:0px; display:none; bottom:0px; width:100%; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div id='debugsqlclose' style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' >X</div>"&runsqlstr&"</div>"&runtime&"<script charset='utf-8' src='/admin/js/debug.js'></script>"
+		response.Write "<style>*html{background-image:url(about:blank);background-attachment:fixed;}#debugsql ul li,#debug ul li{ border:none;border-bottom: solid 1px #EDEDED;line-height: 20px;padding: 2px 0px;}</style><div id='debug' style='z-index:9; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); left:0px; "&debugshow&" bottom:0px; width:500px; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div id='debugclose' style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' >X</div><ul>"&p_errstr&"</ul></div><div id='debugshow' style='width:100px; height:40px; line-height:40px; text-align:center; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); left:0px; bottom:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;z-index:8; background:#fff;border:solid 1px #ccc;'>DEBUG</div><div id='debugsql' style='z-index:9; position:fixed;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); right:0px; display:none; bottom:0px; width:100%; height:300px; padding:10px; background:#fff; border:solid 3px #ccc; overflow:auto;'><div id='debugsqlclose' style='width:30px; height:30px; position:absolute; right:0px; top:0px; cursor:pointer; font-size:20px; text-align:center;font-weight:bolder;' >X</div>"&runsqlstr&"</div>"&runtime&"<script charset='utf-8' src='/"&adminDir&"/js/debug.js'></script>"
 		end if	
 	end Function
 	'==================================================

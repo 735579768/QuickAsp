@@ -11,9 +11,16 @@
 '
 '==============================================
 
+'初始化模板引擎
+set T=New ASPtpl
+'设置模板目录
+T.p_tpl_dir=TPL_PATH&"/TagTpl"
 
 '取参数
 param=tpl.tagparam("param")
+T.assign "val","this is val"
+con=T.fetch("test.tpl")
 '本文件内不能输出内容下面这一句把内容传进去就可以啦
-tpl.assign "tagcontent",param
+tpl.assign "tagcontent",con
+set T=nothing
 %>
