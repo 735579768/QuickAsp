@@ -357,14 +357,14 @@
 '///////////////////////////////////////////
 	function AlertMsg(str)
 		str=replace(str,"'","""")
-		reurl("/admin/message.asp?msg="&server.URLEncode(str))
+		reurl("/"&adminDir&"/message.asp?msg="&server.URLEncode(str))
 		'echo "<script>alert('"&str&"');<\/script>"
 	end function
 '弹出js提示框到前台并返回
 '///////////////////////////////////////////
 	function AlertMsgGo(str,go)
 		str=replace(str,"'","""")
-		reurl("/admin/message.asp?msg="&server.URLEncode(str)&"&uri="&go)
+		reurl("/"&adminDir&"/message.asp?msg="&server.URLEncode(str)&"&uri="&go)
 		'echo "<script>alert('"&str&"');<\/script>"
 		'echo "<script>window.history.go("&go&");<\/script>"
 	end function
